@@ -1,0 +1,46 @@
+{
+    "anuncios":[
+        {
+            "nombre" : "Bicicleta",
+            "venta" : true,
+            "precio" : 350,
+            "foto" : "img/anuncios/bici.jpg",
+            "tags" : [ 
+                "lifestyle"
+            ]
+        },
+        {
+            "nombre" : "iPhone 3GS",
+            "venta" : false,
+            "precio" : 230,
+            "foto" : "img/anuncios/iphone.jpg",
+            "tags" : [ 
+                "lifestyle", 
+                "mobile"
+            ]
+        },
+        {
+            "nombre" : "Ferrari Testarosa",
+            "venta" : true,
+            "precio" : 12350,
+            "foto" : "img/anuncios/ferrari.jpg",
+            "tags" : [ 
+                "motor", 
+                "lifestyle"
+            ]
+        }
+    ],
+
+    "usuarios":[
+        {
+            "nombre" : "Hector",
+            "email" : "hector@gmail.com",
+            "clave" : "1234"
+        },
+        {
+            "nombre" : "PeterParker",
+            "email" : "spiderman@gmail.com",
+            "clave" : "4321"
+        }
+    ]
+}

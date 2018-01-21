@@ -2,11 +2,11 @@
 /*
  * Script que se encarga de poblar la base de datos  
  */
-console.log("STARTING SCRIPT");
 
 const mongoose = require('mongoose');
 const conn = mongoose.connection;  
 
+/* Eventos de la conexión */
 conn.on('error', err => {
     console.log('VAYA, HA HABIDO UN ERROR CONECTANDO A LA BBDD CON MONGOOSE', err);
     process.exit(1);
@@ -14,14 +14,15 @@ conn.on('error', err => {
 conn.once('open', () => {
     console.log(`Conectado a mongoDB con Mongoose en ${mongoose.connection.name}`)
 });
-
+/* Conectamos a la BBDD*/
 mongoose.connect('mongodb://localhost/nodepop',{
     useMongoClient: true
 });
-
+/* Importamos los modelos*/
 const Anuncio = require('./models/Anuncio');
 const Usuario = require('./models/Usuario');
-
+/* Importamos el archivo con el JSON con los datos de inicialización de la BBDD*/
+const datos = require('./anuncios.json');
 
 /*Limpiamos la base de datos por si existia algo antes*/
 console.log("*********** Linpiando Base de Datos *********");
@@ -34,60 +35,21 @@ conn.collections['usuarios'].drop( err => {
     }else {console.log('Collection usuarios eliminada')}   
 });
 
-/* Anuncios */
-console.log("*********** Creando Anuncios *********");
 
-const anuncio1 = new Anuncio ({
-    "nombre" : "Bicicleta",
-    "venta" : true,
-    "precio": 350.00,
-    "foto": "img/anuncios/bici.jpg",
-    "tags": "lifestyle"
-});
-const anuncio2 = new Anuncio ({
-    "nombre" : "iPhone 3GS",
-    "venta" : false,
-    "precio": 230.00,
-    "foto": "img/anuncios/iphone.jpg",
-    "tags": ['lifestyle', 'mobile']
-});
-const anuncio3 = new Anuncio ({
-    "nombre" : "Ferrari Testarosa",
-    "venta" : true,
-    "precio": 12350.00,
-    "foto": "img/anuncios/ferrari.jpg",
-    "tags": ["motor", "mobile", "lifestyle"]
-});
+/* ANUNCIOS - Cargamos todos los anuncios en el array */
+for (let i = 0; i < datos.anuncios.length; i++){
+    const anuncio = new Anuncio (datos.anuncios[i]);
+    anuncio.save((err, anuncioCreado) => {
+        if (err) throw err;
+        console.log(`Anuncio ${anuncio.nombre} ${anuncio.tags} creado`)
+    });
+}
 
-/* Usuarios */
-console.log("*********** Creando Usuarios *********");
-
-const usuario1 = new Usuario ({
-    "nombre": "Hector AP",
-    "email": "hetor@gmail.com",
-    "clave": "clavehector"
-});
-
-
-console.log("*********** Guardando Anuncios *********");
-anuncio1.save((err, anuncioCreado) => {
-    if (err) throw err;
-    console.log(`Anuncio ${anuncio1.nombre} creado`)
-});
-anuncio2.save((err, anuncioCreado) => {
-    if (err) throw err;
-    console.log(`Anuncio ${anuncio2.nombre} creado`)
-});
-anuncio3.save((err, anuncioCreado) => {
-    if (err) throw err;
-    console.log(`Anuncio ${anuncio3.nombre} creado`)
-});
-
-
-console.log("*********** Guardando Usuarios *********");
-usuario1.save((err, usuarioCreado) => {
-    if (err) throw err;
-    console.log(`Usuario ${usuario1.nombre} creado`)
-});
-
-console.log("SCRIPT FINISHED");
+/* USUARIOS - Cargamos todos los usuarios en el array */
+for (let i = 0; i < datos.usuarios.length; i++){
+    const usuario = new Usuario (datos.usuarios[i]);
+    usuario.save((err, usuarioCreado) => {
+        if (err) throw err;
+        console.log(`Usuario ${usuario.nombre} ${usuario.email} creado`)
+    });
+}

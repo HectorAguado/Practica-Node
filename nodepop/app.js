@@ -40,6 +40,17 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
+ //comprobar errores de express-validator (sus errores son arrays)
+  if (err.array){
+    err.status = 422; // unprocessable Entity  - error de validación
+    const errInfo = err.array({ onlyFirstError: true})[0]; 
+    //console.log(`err.array = ${err.array({ onlyFirstError: true})[0]}`);
+    console.log(err.msg)
+    err.message = `Not Valid - ${errInfo.param} -- ${errInfo.msg}`;
+    console.log(err.message)
+  }
+ 
+ 
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
