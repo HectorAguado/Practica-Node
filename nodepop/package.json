@@ -3,8 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "PORT=3000 node ./bin/www",
-    "dev": "PORT=3000 cross-env DEBUG=nodepop:* nodemon ./bin/www",
+    "start": "PORT=3002 node ./bin/www",
+    "cluster": "PORT=3002 node ./bin/cluster",
+    "dev": "PORT=3001 cross-env DEBUG=nodepop:* nodemon ./bin/www",
+    "dev-cluster": "cross-env DEBUG=nodepop:* nodemon ./bin/cluster",
     "installDB": "node ./install_db.js"
   },
   "dependencies": {
@@ -12,9 +14,11 @@
     "cookie-parser": "~1.4.3",
     "cross-env": "^5.1.3",
     "debug": "~2.6.9",
+    "dotenv": "^4.0.0",
     "ejs": "~2.5.7",
     "express": "~4.15.5",
     "express-validator": "^4.3.0",
+    "jsonwebtoken": "^8.1.0",
     "mongoose": "^4.13.9",
     "morgan": "~1.9.0",
     "serve-favicon": "~2.4.5"

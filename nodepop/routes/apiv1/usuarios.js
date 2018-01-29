@@ -1,8 +1,10 @@
 'use strict';
 
-//Creamos un reouter
+//Creamos un router
 const express = require('express');
 const router = express.Router();
+//cargamos la autenticación por JWT
+const jwtAuth = require ('../../lib/jwtAuth.js');
 
 //cargamos modelo de anuncio
 const Usuario = require ('../../models/Usuario.js');
@@ -66,7 +68,9 @@ router.post('/', [
  */
 router.get('/',async(req, res, next) =>{
     try{
-        const rows = await Usuario.find({email: 'hector@gmail.com'});
+        const email = req.headers.email;
+        const rows = await Usuario.find({email: email});
+        console.log(email + ' ' + rows);
         res.json({success: true, result: rows});
     }catch(err){
         next(err);

@@ -3,14 +3,30 @@
 //Creamos un reouter
 const express = require('express');
 const router = express.Router();
+// Cargamos nuestro middleware de autenticación
+ const jwtAuth = require('../../lib/jwtAuth');
 
 //cargamos modelo de anuncio
 const Anuncio = require ('../../models/Anuncio.js');
 
-/**
+
+//pedimos a jswAuth que nos fabrique un middleware de autenticación con JWT.
+//lo ponemos el primero, así me aseguro que lo primero que se hace es autenticar.
+router.use(jwtAuth());
+
+/** 
+ * GET /anuncios/tags
+ */
+router.get('/tags', async(req, res, next)=> {
+    try{
+
+    }catch(err){
+        next(err);
+    }
+});
+/** 
  * GET /anuncios
  */
-
 router.get('/', async(req, res, next) =>{
     try{
         const nombre = req.query.nombre;
