@@ -11,11 +11,10 @@ const Usuario = require ('../../models/Usuario.js');
 
 //para validar
 const {check, validationResult} = require('express-validator/check');
-/* Equivale a
-const check = require('express-validator/check');
-const validationResult = check.validationResult;
-*/
 const { matchedData, sanitize } = require('express-validator/filter');
+
+//para codificar en hash256 la clave
+const sha256 = require('../../node_modules/sha256');
 
 /**
  * POST /usuarios
@@ -43,6 +42,10 @@ router.post('/', [
     console.log('Req.Body:', req.body);
     
     validationResult(req).throw();
+    
+    console.log(req.body.clave);
+    req.body.clave = sha256(req.body.clave);
+    console.log(req.body.clave);
     
     // Una vez validados que los datos lo persistimos en la colección de usuarios
     //le pasamos el cuerpo de la petición. Moongose no permitirá nada que no cumpla el esquema

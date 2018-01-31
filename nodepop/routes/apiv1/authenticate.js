@@ -4,12 +4,17 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const Usuario = require('../../models/Usuario');
+//para codificar en hash256 la clave
+const sha256 = require('../../node_modules/sha256');
+
 
 router.post('/', async (req, res, next) => {
     try{
         //recogemos las credenciales
         const email = req.body.email;
-        const clave = req.body.clave;
+        let clave = req.body.clave;
+        //como las claves estan encriptadas con sha256
+        clave = sha256(clave);
         //buscamos en la BBDD
         const user = await Usuario.findOne({email: email}).exec();
         console.log(`USUARIO CON EMAIL EN BODY: ${email} y PASSWORD ${clave}`);

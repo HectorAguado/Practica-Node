@@ -1,46 +1,142 @@
 {
     "anuncios":[
         {
-            "nombre" : "Bicicleta",
+            "nombre" : "bicicleta orbea dakar",
             "venta" : true,
             "precio" : 350,
-            "foto" : "img/anuncios/bici.jpg",
+            "foto" : "img/anuncios/bicicleta_orbea_dakar.jpg",
+            "tags" : [ 
+                "lifestyle"
+            ]
+        },       
+        {
+            "nombre" : "silla modelo 4690",
+            "venta" : false,
+            "precio" : 59.00,
+            "foto" : "img/anuncios/silla_4690.jpg",
+            "tags" : [ 
+                "work"
+            ]
+        },
+        {
+            "nombre" : "ferrari 812 superfast",
+            "venta" : true,
+            "precio" : 12350,
+            "foto" : "img/anuncios/ferrari-812-superfast.jpg",
+            "tags" : [ 
+                "motor", 
+                "lifestyle"
+            ]
+        },
+        {
+            "nombre" : "iphone 8 plus plata",
+            "venta" : false,
+            "precio" : 320,
+            "foto" : "img/anuncios/iphone-8-plus-plata.jpg",
+            "tags" : [ 
+                "lifestyle",
+                "mobile"
+            ]
+        },
+        {
+            "nombre" : "bicicleta bh aerolight",
+            "venta" : false,
+            "precio" : 230,
+            "foto" : "img/anuncios/bicicleta-BH-aerolight.jpg",
             "tags" : [ 
                 "lifestyle"
             ]
         },
         {
-            "nombre" : "iPhone 3GS",
-            "venta" : false,
-            "precio" : 230,
-            "foto" : "img/anuncios/iphone.jpg",
+            "nombre" : "lampara s5",
+            "venta" : true,
+            "precio" : 30.00,
+            "foto" : "img/anuncios/lampara-s5.jpg",
             "tags" : [ 
+                "work"
+            ]
+        },
+        {
+            "nombre" : "mac book pro 2018",
+            "venta" : true,
+            "precio" : 2299.99,
+            "foto" : "img/anuncios/mac_book_pro_2018.jpg",
+            "tags" : [ 
+                "work", 
+                "mobile"
+            ]
+        },
+        {
+            "nombre" : "lampara task-desk magnificent",
+            "venta" : false,
+            "precio" : 15.00,
+            "foto" : "img/anuncios/lampara-task-desk-magnificent.jpg",
+            "tags" : [ 
+                "work"
+            ]
+        },
+        {
+            "nombre" : "mercedes cls 2018 amg",
+            "venta" : false,
+            "precio" : 23999.99,
+            "foto" : "img/anuncios/mercedes-cls-2018-amg.jpg",
+            "tags" : [ 
+                "motor", 
+                "lifestyle"
+            ]
+        },
+        {
+            "nombre" : "iphone x gris espacial",
+            "venta" : true,
+            "precio" : 1000,
+            "foto" : "img/anuncios/iphone-x-gris-espacial.jpg",
+            "tags" : [ 
+                "lifestyle",
+                "mobile"
+            ]
+        },
+        {
+            "nombre" : "samsung galaxy s8 edge plus",
+            "venta" : true,
+            "precio" : 599.00,
+            "foto" : "img/anuncios/samsung-galaxy-s8-edge-plus.jpg",
+            "tags" : [ 
+                "work",
                 "lifestyle", 
                 "mobile"
             ]
         },
         {
-            "nombre" : "Ferrari Testarosa",
+            "nombre" : "silla modelo 2657",
             "venta" : true,
-            "precio" : 12350,
-            "foto" : "img/anuncios/ferrari.jpg",
+            "precio" : 210.00,
+            "foto" : "img/anuncios/silla_2657.jpg",
             "tags" : [ 
-                "motor", 
-                "lifestyle"
+                "work"
+            ]
+        },
+        {
+            "nombre" : "ford transit connect",
+            "venta" : false,
+            "precio" : 9999.99,
+            "foto" : "img/anuncios/ford_transit_connect.jpg",
+            "tags" : [ 
+                "work", 
+                "motor"
             ]
         }
     ],
 
     "usuarios":[
         {
-            "nombre" : "Hector",
-            "email" : "hector@gmail.com",
-            "clave" : "1234"
+            "nombre" : "BruceWayne",
+            "email" : "batman@gmail.com",
+            "clave" : "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4"
         },
         {
             "nombre" : "PeterParker",
             "email" : "spiderman@gmail.com",
-            "clave" : "4321"
+            "clave" : "fe2592b42a727e977f055947385b709cc82b16b9a87f88c6abf3900d65d0cdc3"
         }
     ]
 }

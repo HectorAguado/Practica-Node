@@ -8,8 +8,11 @@
 ## Para inicializar la BBDD nodepop de Mongo DB usaremos el script:
 `npm run installDB`
 
-## Para ejecutar el proyecto en modo desarrollo
-`npm run dev`
+## Para ejecutar el proyecto 
+* en modo desarrollo simple process `npm run dev`
+* en modo desarrollo con cluster `npm run dev-cluster`
+* en normal simple process `npm run start`
+* en normal con cluster `npm run dev-cluster`
 
 ## Despliegue
 Copiar `.env.example` y revisar los valores
