@@ -40,7 +40,9 @@ router.get('/', async(req, res, next) =>{
         //creo filtro vacio
         const filter = {}
         if (nombre){
-            filter.nombre = nombre;
+            const regexNombre = "^" + nombre;
+            console.log(regexNombre);
+            filter.nombre = { $regex: regexNombre};
         }
         if (venta){
             filter.venta = venta;
@@ -62,16 +64,13 @@ router.get('/', async(req, res, next) =>{
             }else if(guion === longitud-1){ //esta al final. Pedimos mayor o igual que precio
                 filter.precio ={ $gte: stringPrecio.replace('-','') } ;
             }else{   //esta en medio. Pedimos rango
-                console.log (stringPrecio.substr(0, guion));
-                console.log (stringPrecio.substr(guion + 1, longitud));
-                filter.precio ={ $gte:  stringPrecio.substr(0, guion), $lte:  stringPrecio.substr(guion+1, longitud) } ;
+                const valor1 = stringPrecio.substr(0, guion);
+                const valor2 = stringPrecio.substr(guion + 1, longitud);
+                filter.precio ={ $gte: valor1, $lte: valor2 } ;
             }
-
-
-
         }
         if (tags){
-            filter.tags = tags;
+            filter.tags = { $in: tags };
         }
         //hago consulta y doy respuesta
         const rows = await Anuncio.list(filter, limit, skip, sort, fields);
