@@ -1,5 +1,9 @@
 # Practica Node.JS NODEPOP
 
+## Pactica DEV OPS Desplegada en
+* práctica node: node.haguado.com
+* página estática: haguado.com
+
 ## Para arrancar Mongo DB podemos usar:
 `./bin/mongod --dbpath ./data/db --directoryperdb`
 ### creado un alias
