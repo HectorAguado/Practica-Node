@@ -3,11 +3,10 @@
 const mongoose = require('mongoose');
 const conn = mongoose.connection;
 
+/* Si en existe la variable entorno DB_USER, nos conectaremos con los datos que nos proporcionen, si no, lo hacemos normal */
 var databaseUri = 'mongodb://$localhost/nodepopdb'
 if (process.env.DB_USER){
     databaseUri = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@localhost/nodepopdb`;
-    console.log('USUARIO:',process.env.DB_USER);
-    console.log('PASS:',process.env.DB_PASS);
 }
 
 conn.on('error', err => {

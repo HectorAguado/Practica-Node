@@ -20,6 +20,7 @@
 
 ## Despliegue
 Copiar `.env.example` y revisar los valores
+Se deberá crear un fichero `.env` con la info particular para nuestra conexión a BBDD y para autenticación por JWT
 
 ## Autenticación JSON WEB TOKEN
 Preparado para recibir en el BODY los parámetros email y clave
