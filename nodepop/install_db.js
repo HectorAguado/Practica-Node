@@ -3,6 +3,9 @@
  * Script que se encarga de poblar la base de datos  
  */
 
+ //cargo dotenv para que cargue las variables de entorno que tengo en el fichero .env
+require('dotenv').config();
+
 const mongoose = require('mongoose');
 const conn = mongoose.connection;  
 
@@ -20,11 +23,20 @@ const Usuario = require('./models/Usuario');
 /* Importamos el archivo con el JSON con los datos de inicialización de la BBDD*/
 const datos = require('./anuncios.json');
 
+var databaseUri = 'mongodb://$localhost/nodepopdb'
+if (process.env.DB_USER){
+    databaseUri = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@localhost/nodepopdb`;
+    console.log('USUARIO:',process.env.DB_USER);
+    console.log('PASS:',process.env.DB_PASS);
+}
+//const mongodb_uri = 'mongodb://$localhost/nodepopdb'
+//var databaseUri = process.env.DATABASE_URI || mongodb_uri;
 async function LimpiarBBDD () {
     try{
         /* Conectamos a la BBDD*/
         console.log("*********** Conectando a Base de Datos *********");
-        await mongoose.connect('mongodb://localhost/nodepopdb',{
+        
+        await mongoose.connect(databaseUri,{
             useMongoClient: true
         });
         /*Limpiamos la base de datos por si existia algo antes*/
