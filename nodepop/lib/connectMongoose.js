@@ -12,7 +12,7 @@ conn.once('open', () => {
     console.log(`Conectado a mongoDB con Mongoose en ${mongoose.connection.name}`)
 });
 
-mongoose.connect('mongodb://localhost/nodepop',{
+mongoose.connect('mongodb://localhost/nodepopdb',{
     useMongoClient: true
 });
 

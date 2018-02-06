@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "PORT=3002 node ./bin/www",
-    "cluster": "PORT=3002 node ./bin/cluster",
+    "start": "node ./bin/www",
+    "cluster": "node ./bin/cluster",
     "dev": "PORT=3001 cross-env DEBUG=nodepop:* nodemon ./bin/www",
     "dev-cluster": "cross-env DEBUG=nodepop:* nodemon ./bin/cluster",
     "installDB": "node ./install_db.js"

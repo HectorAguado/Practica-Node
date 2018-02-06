@@ -24,7 +24,7 @@ async function LimpiarBBDD () {
     try{
         /* Conectamos a la BBDD*/
         console.log("*********** Conectando a Base de Datos *********");
-        await mongoose.connect('mongodb://localhost/nodepop',{
+        await mongoose.connect('mongodb://localhost/nodepopdb',{
             useMongoClient: true
         });
         /*Limpiamos la base de datos por si existia algo antes*/
