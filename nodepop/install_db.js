@@ -24,7 +24,7 @@ const Usuario = require('./models/Usuario');
 const datos = require('./anuncios.json');
 
 /* Si en existe la variable entorno DB_USER, nos conectaremos con los datos que nos proporcionen, si no, lo hacemos normal */
-var databaseUri = 'mongodb://$localhost/nodepopdb'
+var databaseUri = 'mongodb://localhost/nodepopdb';
 if (process.env.DB_USER){
     databaseUri = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@localhost/nodepopdb`;
 }

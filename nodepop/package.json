@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "cluster": "node ./bin/cluster",
-    "dev": "PORT=3001 cross-env DEBUG=nodepop:* nodemon ./bin/www",
+    "dev": "PORT=3002 cross-env DEBUG=nodepop:* nodemon ./bin/www",
     "dev-cluster": "cross-env DEBUG=nodepop:* nodemon ./bin/cluster",
     "installDB": "node ./install_db.js"
   },
