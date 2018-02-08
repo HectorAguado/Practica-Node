@@ -27,13 +27,16 @@ router.post('/', [
         .trim(),
     check('email')
         .isEmail().withMessage('must be a valid email')
-        .trim().normalizeEmail(),
-        // .custom(value => {
-        //     console.log('Value', '['+value+']');
-        //     return findUsersBymail(value).then( user =>{
-        //         throw new Error('This email is already in use');
-        //      })
-        //  }),
+        .trim().normalizeEmail()
+        .custom(value => {
+            console.log(`Validando que el EMAIL: ${value} no existe previamente en la BBDD de usuarios`);
+            return Usuario.findOne({ email: value }).then( emailRepetido => {
+                if (emailRepetido){
+                    throw new Error(`${value} is already in use`)
+                }
+                return true;
+            }); 
+        }),
     check('clave')
         .isLength({min: 4}).withMessage('must have 4 characters at least')
 ],(req, res, next) => { 
@@ -71,21 +74,14 @@ router.post('/', [
  */
 router.get('/',async(req, res, next) =>{
     try{
-        const email = req.headers.email;
-        const rows = await Usuario.find({email: email});
-        console.log(email + ' ' + rows);
+        const rows = await Usuario.find();
+        console.log(rows);
         res.json({success: true, result: rows});
     }catch(err){
         next(err);
     }
 });
 
-
-function findUsersBymail(email) {
-    const result = Usuario.find({email: 'hejhgfhjfgjr@gmail.com'}).exec().then();
-    console.log('Result: ---> ',result);
-    return result;
-};
 /** 
 
     //Creamos un usuario en memoria

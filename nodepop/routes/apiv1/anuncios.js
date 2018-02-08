@@ -70,7 +70,9 @@ router.get('/', async(req, res, next) =>{
             }
         }
         if (tags){
-            filter.tags = { $in: tags };
+            const listaTags = Anuncio.listTags()
+            console.log (tags);
+            filter.tags = { $in: [tags] };
         }
         //hago consulta y doy respuesta
         const rows = await Anuncio.list(filter, limit, skip, sort, fields);
