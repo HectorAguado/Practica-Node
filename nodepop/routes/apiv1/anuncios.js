@@ -70,9 +70,14 @@ router.get('/', async(req, res, next) =>{
             }
         }
         if (tags){
-            const listaTags = Anuncio.listTags()
+            const tipo = typeof(tags);
+            const filtroTags = Array.isArray(tags) ;
             console.log (tags);
-            filter.tags = { $in: [tags] };
+            if (Array.isArray(tags)){
+                filter.tags = { $in: tags }
+            }else {
+                filter.tags = tags ;
+            } 
         }
         //hago consulta y doy respuesta
         const rows = await Anuncio.list(filter, limit, skip, sort, fields);
@@ -82,28 +87,28 @@ router.get('/', async(req, res, next) =>{
     }
 });
 
-router.post('/', (req, res, next) => {
-        const nombre = req.body.nombre;
-        const venta = req.body.venta;
-        const precio = req.body.precio;
-        const foto = req.body.foto;
-        const tags = req.body.tags;
-        const anuncio = new Anuncio({
-            nombre: nombre,
-            venta: venta,
-            precio: precio,
-            foto: foto,
-            tags: tags
-        });
-        anuncio.save((err, anuncioGuardado) => {
-                    if (err){
-                        console.log(err);
-                        next(err);
-                        return;
-                    }
-                    res.json({ success: true, result: anuncioGuardado }); //res.json da ya un codigo 200
-                });
-});
+// router.post('/', (req, res, next) => {
+//         const nombre = req.body.nombre;
+//         const venta = req.body.venta;
+//         const precio = req.body.precio;
+//         const foto = req.body.foto;
+//         const tags = req.body.tags;
+//         const anuncio = new Anuncio({
+//             nombre: nombre,
+//             venta: venta,
+//             precio: precio,
+//             foto: foto,
+//             tags: tags
+//         });
+//         anuncio.save((err, anuncioGuardado) => {
+//                     if (err){
+//                         console.log(err);
+//                         next(err);
+//                         return;
+//                     }
+//                     res.json({ success: true, result: anuncioGuardado }); //res.json da ya un codigo 200
+//                 });
+// });
 
 //Exportamos el router
 module.exports = router;

@@ -53,16 +53,14 @@ router.post('/', [
     // Una vez validados que los datos lo persistimos en la colección de usuarios
     //le pasamos el cuerpo de la petición. Moongose no permitirá nada que no cumpla el esquema
     const usuario = new Usuario(matchedData(req));
-    //const existeEmail = Usuario.find({email: email});
-    //if (!existeEmail){
-        usuario.save((err, usuarioGuardado) => {
-                if (err){
-                    console.log(err);
-                    next(err);
-                    return;
-                }
-                res.json({ success: true, result: usuarioGuardado }); //res.json da ya un codigo 200
-            });
+    usuario.save((err, usuarioGuardado) => {
+        if (err){
+            console.log(err);
+            next(err);
+            return;
+        }
+        res.json({ success: true, result: usuarioGuardado }); //res.json da ya un codigo 200
+    });
     // }else{
     //     return new Error ('That email address is already in use.');
     //     res.json({ success: false, result: 'That email address is already in use.'});
@@ -81,31 +79,6 @@ router.get('/',async(req, res, next) =>{
         next(err);
     }
 });
-
-/** 
-
-    //Creamos un usuario en memoria
-    //le pasamos el cuerpo de la petición. Moongose no permitirá nada que no cumpla el esquema
-    const usuario = new Usuario(req.body);  
-    //si alguno de los campos vacío, mandamos error y salimos
-    if(!(usuario.nombre && usuario.email && usuario.clave)){
-        const err = new Error ('Algún campo esta vacío');
-        err.status (400);
-        return next (err);
-    }
-        // lo persistimos en la colección de usuarios
-        usuario.save((err, usuarioGuardado) => {
-            if (err){
-                console.log(err);
-                next(err);
-                return;
-            }
-            res.json({ success: true, result: usuarioGuardado }); //res.json da ya un codigo 200
-        });
-    
-});
-*/
-
 
 //Exportamos el router
 module.exports = router;
